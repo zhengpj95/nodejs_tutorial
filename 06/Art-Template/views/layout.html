@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- <title>{{title}}</title> -->
+	<title>{{block 'title'}} {{title}} {{ /block }}</title>
+	<link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	{{ block 'style' }}
+		<style type="text/css">
+			h3{
+				background-color: green;
+			}
+		</style>
+	{{ /block }}
+</head>
+<body>
+	<!-- 引入头部公共文件 -->
+	{{ include './header.html' }}
+
+	<!-- 中间内容 -->
+	{{ block 'content' }}
+		<h1>{{ title }}</h1>
+		<h3>中间主体内容</h3>
+	{{ /block}}
+
+	<!-- 引入底部公共文件 -->
+	{{ include './footer.html'}}
+
+	<script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	{{ block 'script' }} {{ /block }}
+</body>
+</html>

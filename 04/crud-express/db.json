@@ -1,0 +1,24 @@
+{
+  "students": [
+  {
+    "id": 2,
+    "name": "里斯lisi",
+    "gender": 1,
+    "age": 19,
+    "hobbies": "吃饭、睡觉、敲代码、看电影"
+  },
+  {
+    "id": 3,
+    "name": "王五",
+    "gender": 0,
+    "age": 22,
+    "hobbies": "吃饭、睡觉、敲代码、看电影"
+  },
+  {
+    "name": "zz",
+    "gender": "0",
+    "age": "18",
+    "hobbies": "敲代码，灵魂修养",
+    "id": 4
+  }]
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>发表评论</title>
+	<link rel="shortcut icon" type="image/x-icon" href="public/img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="public/lib/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<br><br>
+		<h2>发表评论：</h2>
+		<br>
+		<!-- <form action="/comment" method="get"> -->
+		<form action="/post" method="post">
+		  <div class="form-group">
+		    <label for="input_name">大名</label>
+		    <input type="text" class="form-control" id="input_name" name="name" required>
+		  </div>
+		  <div class="form-group">
+		    <label for="input_message">内容</label>
+		    <textarea type="text" class="form-control" id="input_message" name="message" rows="5" required></textarea>
+		  </div>
+		  <button type="submit" class="btn btn-primary btn-lg btn-block">发表</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>评论列表</title>
+	<link rel="shortcut icon" type="image/x-icon" href="/public/img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/public/lib/bootstrap/css/bootstrap.min.css">
+	<style type="text/css">
+		html,body{
+			background-image: url("public/img/girl.jpg");
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+		.container{
+			background-color: #eee;
+			padding-bottom: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<br><br>
+		<h2>首页 -- 评论</h2>
+		<br><br>
+		<a class="btn btn-lg btn-success" href="post">发表评论</a>
+		<br><br>
+		<div class="content">
+			<ul class="list-group">
+				{{each comments}}
+					<li class="list-group-item">
+						<strong>{{ $value.name }}</strong> 说： {{ $value.message }}
+						<span class="float-right">{{ $value.dateTime }}</span>
+					</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
