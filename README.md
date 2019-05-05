@@ -13,9 +13,9 @@ Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
   - 非阻塞I/O模型（non-blocking I/O model）
   - 每个函数都是异步的
 
-> node --version	// 查看版本号
+> node --version  // 查看版本号
 >
-> node server.js	// 开启服务器
+> node server.js  // 开启服务器
 
 ## 2. npm
 
@@ -23,13 +23,13 @@ node package manager
 
 > npm --version
 >
-> npm install --global npm	// 自己升级自己
+> npm install --global npm  // 自己升级自己
 >
-> npm init   ||    npm init -y 	// 快速生成package.json
+> npm init   ||    npm init -y  // 快速生成package.json
 >
-> npm install XXX --save	//把下载的包在package.json中创建依赖项
+> npm install XXX --save  //把下载的包在package.json中创建依赖项
 >
-> npm uninstall XXX --save	// 删除的同时，把依赖项删除
+> npm uninstall XXX --save  // 删除的同时，把依赖项删除
 >
 > npm help   ||     npm 命令 --help
 >
@@ -152,7 +152,6 @@ app.get('/', (req, res) => {
 app.listen(port, (req, res) => {
     console.log('server running...')
 })
-
 ```
 
 ### 4.1 Express 中配置 art-template
@@ -229,7 +228,7 @@ app.use(function (req, res) {
 ### 4.3 Express 获取表单 GET 请求体数据
 
 ```javascript
-req.query	// 获取GET提交的数据
+req.query // 获取GET提交的数据
 ```
 
 ## 5. MongoDB
