@@ -4,13 +4,14 @@
 ## 1. node.js
 
 Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+
 - Node.js不是JavaScript应用，不是语言，不是框架，不是服务器。
 - 而是JavaScript运行时环境。
 - 就像浏览器一样解析运行JavaScript语言，因为Node.js是建立在Chrome的V8引擎上的
 - 特点
-  + 事件驱动（event-driven）
-  + 非阻塞I/O模型（non-blocking I/O model）
-  + 每个函数都是异步的
+  - 事件驱动（event-driven）
+  - 非阻塞I/O模型（non-blocking I/O model）
+  - 每个函数都是异步的
 
 > node --version	// 查看版本号
 >
@@ -53,11 +54,12 @@ node package manager
 ### 3.3 模板继承
 
 父模板：
+
 ```html
 // template.html
 // block 表示模板，'content'表示此模板的标识
 {{ block 'content' }}
-  // body    
+  // body
   // 此处内容可以被子模版替换
 {{ /block }}
 
@@ -66,6 +68,7 @@ node package manager
 ```
 
 继承父模板：
+
 ```html
 // 首先说明继承
 {{ extend './template.html'}}
@@ -79,6 +82,7 @@ node package manager
 ```
 
 模板实例：
+
 ```html
 <!--template.html-->
 <!doctype html>
@@ -213,6 +217,7 @@ app.use(function (req, res) {
 使用：
 
 > req.body   // 获取POST提交的数据
+
 ```javascript
 app.use(function (req, res) {
   res.setHeader('Content-Type', 'text/plain')
