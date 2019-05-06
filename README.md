@@ -248,3 +248,13 @@ nodemon, reload, automatically.
 > npm install -g nodemon  // 安装到全局
 >
 > nodemon server.js     // 开启服务器，server.js是入口文件，文件名称不重要
+
+### nvm
+
+管理Node.Js的版本号
+> nvm ls
+
+### nrm
+
+查看下载源。
+> nrm ls
