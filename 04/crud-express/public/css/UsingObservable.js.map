@@ -1,0 +1,51 @@
+is method returns `true`, then
+`consumer.sourceContentFor(s)` will succeed for every source `s` in
+`consumer.sources`.
+
+```js
+// ...
+if (consumer.hasContentsOfAllSources()) {
+  consumerReadyCallback(consumer);
+} else {
+  fetchSources(consumer, consumerReadyCallback);
+}
+// ...
+```
+
+#### SourceMapConsumer.prototype.sourceContentFor(source[, returnNullOnMissing])
+
+Returns the original source content for the source provided. The only
+argument is the URL of the original source file.
+
+If the source content for the given source is not found, then an error is
+thrown. Optionally, pass `true` as the second param to have `null` returned
+instead.
+
+```js
+consumer.sources
+// [ "my-cool-lib.clj" ]
+
+consumer.sourceContentFor("my-cool-lib.clj")
+// "..."
+
+consumer.sourceContentFor("this is not in the source map");
+// Error: "this is not in the source map" is not in the source map
+
+consumer.sourceContentFor("this is not in the source map", true);
+// null
+```
+
+#### SourceMapConsumer.prototype.eachMapping(callback, context, order)
+
+Iterate over each mapping between an original source/line/column and a
+generated line/column in this source map.
+
+* `callback`: The function that is called with each mapping. Mappings have the
+  form `{ source, generatedLine, generatedColumn, originalLine, originalColumn,
+  name }`
+
+* `context`: Optional. If specified, this object will be the value of `this`
+  every time that `callback` is called.
+
+* `order`: Either `SourceMapConsumer.GENERATED_ORDER` or
+  `SourceMapCon

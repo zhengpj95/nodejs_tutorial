@@ -1,0 +1,64 @@
+nt` field.
+
+* `sourceFile`: The filename of the source file
+
+* `sourceContent`: The content of the source file
+
+```js
+node.setSourceContent("module-one.scm",
+                      fs.readFileSync("path/to/module-one.scm"))
+```
+
+#### SourceNode.prototype.walk(fn)
+
+Walk over the tree of JS snippets in this node and its children. The walking
+function is called once for each snippet of JS and is passed that snippet and
+the its original associated source's line/column location.
+
+* `fn`: The traversal function.
+
+```js
+var node = new SourceNode(1, 2, "a.js", [
+  new SourceNode(3, 4, "b.js", "uno"),
+  "dos",
+  [
+    "tres",
+    new SourceNode(5, 6, "c.js", "quatro")
+  ]
+]);
+
+node.walk(function (code, loc) { console.log("WALK:", code, loc); })
+// WALK: uno { source: 'b.js', line: 3, column: 4, name: null }
+// WALK: dos { source: 'a.js', line: 1, column: 2, name: null }
+// WALK: tres { source: 'a.js', line: 1, column: 2, name: null }
+// WALK: quatro { source: 'c.js', line: 5, column: 6, name: null }
+```
+
+#### SourceNode.prototype.walkSourceContents(fn)
+
+Walk over the tree of SourceNodes. The walking function is called for each
+source file content and is passed the filename and source content.
+
+* `fn`: The traversal function.
+
+```js
+var a = new SourceNode(1, 2, "a.js", "generated from a");
+a.setSourceContent("a.js", "original a");
+var b = new SourceNode(1, 2, "b.js", "generated from b");
+b.setSourceContent("b.js", "original b");
+var c = new SourceNode(1, 2, "c.js", "generated from c");
+c.setSourceContent("c.js", "original c");
+
+var node = new SourceNode(null, null, null, [a, b, c]);
+node.walkSourceContents(function (source, contents) { console.log("WALK:", source, ":", contents); })
+// WALK: a.js : original a
+// WALK: b.js : original b
+// WALK: c.js : original c
+```
+
+#### SourceNode.prototype.join(sep)
+
+Like `Array.prototype.join` except for SourceNodes. Inserts the separator
+between each of this source node's children.
+
+* `s

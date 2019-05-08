@@ -1,0 +1,53 @@
+._version,
+	      sources: this._sources.toArray(),
+	      names: this._names.toArray(),
+	      mappings: this._serializeMappings()
+	    };
+	    if (this._file != null) {
+	      map.file = this._file;
+	    }
+	    if (this._sourceRoot != null) {
+	      map.sourceRoot = this._sourceRoot;
+	    }
+	    if (this._sourcesContents) {
+	      map.sourcesContent = this._generateSourcesContent(map.sources, map.sourceRoot);
+	    }
+	
+	    return map;
+	  };
+	
+	/**
+	 * Render the source map being generated to a string.
+	 */
+	SourceMapGenerator.prototype.toString =
+	  function SourceMapGenerator_toString() {
+	    return JSON.stringify(this.toJSON());
+	  };
+	
+	exports.SourceMapGenerator = SourceMapGenerator;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* -*- Mode: js; js-indent-level: 2; -*- */
+	/*
+	 * Copyright 2011 Mozilla Foundation and contributors
+	 * Licensed under the New BSD license. See LICENSE or:
+	 * http://opensource.org/licenses/BSD-3-Clause
+	 *
+	 * Based on the Base 64 VLQ implementation in Closure Compiler:
+	 * https://code.google.com/p/closure-compiler/source/browse/trunk/src/com/google/debugging/sourcemap/Base64VLQ.java
+	 *
+	 * Copyright 2011 The Closure Compiler Authors. All rights reserved.
+	 * Redistribution and use in source and binary forms, with or without
+	 * modification, are permitted provided that the following conditions are
+	 * met:
+	 *
+	 *  * Redistributions of source code must retain the above copyright
+	 *    notice, this list of conditions and the following disclaimer.
+	 *  * Redistributions in binary form must reproduce the above
+	 *    copyright notice, this list of conditions and the following
+	 *    disclaimer in the documentation and/or other materials provided
+	 *    with the distribution.
