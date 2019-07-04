@@ -251,10 +251,11 @@ nodemon, reload, automatically.
 
 ### nvm
 
-管理Node.Js的版本号
-> nvm ls
+> nvm ls // 管理Node.Js的版本号
+> nvm ls availavle //查看所有可用的版本
 
 ### nrm
 
-查看下载源。
-> nrm ls
+> nrm ls // 查看下载源
+> nrm use <registry>  // 更换下载源
+> nrm test <registry>  // 测试下载速度，不要<registry>则测试所有的
