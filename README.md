@@ -246,7 +246,7 @@ nodemon, reload, automatically.
 第三方工具，会监视文件的变化，当文件发生变化时，自动重启服务器
 
 > npm install -g nodemon  // 安装到全局
->
+
 > nodemon server.js     // 开启服务器，server.js是入口文件，文件名称不重要
 
 ### nvm
