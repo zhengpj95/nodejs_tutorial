@@ -3,6 +3,7 @@
 ## 修改源地址
 
 > `npm config set registry http://registry.npm.taobao.org/`
+
 > `npm config set registry https://registry.npmjs.org/`
 
 ## nrm -- 快速切换 NPM 源
