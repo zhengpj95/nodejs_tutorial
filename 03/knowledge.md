@@ -1,6 +1,4 @@
-
 # Node.js知识点
-
 
 ## 1、模块系统
 
@@ -8,12 +6,13 @@
 
 - 文件作用域
 - 通信规则
-  + 加载 require
-  + 导出
+  - 加载 require
+  - 导出
 
 ### 1.2 CommonJS模块规范
 
 在Node中的JavaScript有一个很重要的概念：模块系统
+
 - 模块作用域
 - 使用 require 方法来加载模块
 - 使用 exports 接口对象来导出模块中的成员
@@ -21,10 +20,13 @@
 #### 1.2.1 加载 `require`
 
 语法：
+
 ```javascript
 var 自定义变量名称 = require("模块");
 ```
+
 两个作用：
+
 - 执行被加载模块中的代码
 - 得到被加载模块中的 `exports` 导出接口对象
 
@@ -34,6 +36,7 @@ var 自定义变量名称 = require("模块");
 - 对于希望可以被其他模块访问的成员，需将这些公开的成员都挂载到`exports`接口对象中
 
 - 导出多个成员（必须在对象中）：
+
 ```javascript
     exports.a = 123
     exports.b = 'hello',
@@ -60,21 +63,23 @@ var 自定义变量名称 = require("模块");
 ```
 
 - 导出单个成员（函数，字符串等）：
+
 ```javascript
     module.exports = 'hello'
     // 只能有一个，多个的话，后者会覆盖前者
 ```
 
 - 最终使用情况
-    + 导出多个成员：`exports.XXX = XXX`
-    + 导出多个成员：`module.exports = {XXX:XXX, ...}`
-    + 导出单个成员：`module.exports = XXX`
+  - 导出多个成员：`exports.XXX = XXX`
+  - 导出多个成员：`module.exports = {XXX:XXX, ...}`
+  - 导出单个成员：`module.exports = XXX`
 
 #### 原理解析
 
 ##### `exports` 与 `module.exports` 的区别
 
 exports 为 module.exports 的一个引用
+
 ```javascript
     console.log(exports === module.exports) // => true
 
@@ -89,7 +94,7 @@ exports 为 module.exports 的一个引用
 - 给 exports 赋值会断开和 module.exports 的联系
 - 同理，给 module.exports 赋值也会断开
 
-##### `module.exports = XXX`有用，而`exports = XXX` 无用的原因：
+##### `module.exports = XXX`有用，而`exports = XXX` 无用的原因`
 
 1. 开始时，`var exports = module.exports`
 2. 此时，`exports` 是 `module.exports` 的一个引用，两者建立了联系，指向同一内容
@@ -98,23 +103,22 @@ exports 为 module.exports 的一个引用
 5. 最后，返回的是 `return module.exports`
 6. 如果 `exports` 与 `module.exports` 不存在关系，给`exports`怎么赋值都不管用
 
-
 ## 2、模块查找机制
 
 - 优先从缓存加载
 - 核心模块
 - 路径形式的文件模块
 - 第三方模块
-    + node_modules/art-template/
-    + node_modules/art-template/package.json
-    + node_modules/art-template/package.json 下的 main 属性
-    + index.js 备选项
-    + 找不到，会进入上一级目录找 node_modules
-    + 按照这个规则依次往上找，直到磁盘根目录还找不到
+  - node_modules/art-template/
+  - node_modules/art-template/package.json
+  - node_modules/art-template/package.json 下的 main 属性
+  - index.js 备选项
+  - 找不到，会进入上一级目录找 node_modules
+  - 按照这个规则依次往上找，直到磁盘根目录还找不到
         * 最后报错：Can not find module xxx
 - 一个项目有且仅有一个 node_modules ，放在根目录下
 
-## 3、`npm` 
+## 3、`npm`
 
 全称：node package manager
 
@@ -126,23 +130,24 @@ exports 为 module.exports 的一个引用
 ### 3.2 常用命令
 
 **注意：**`--save`可以在包名前，也可在后
+
 - `npm init`
-    + `npm init -y` 跳过向导，快速生成
+  - `npm init -y` 跳过向导，快速生成
 - `npm install`
-    + 一次性把`dependencies`选项中的依赖项全部安装
-    + `npm i`
+  - 一次性把`dependencies`选项中的依赖项全部安装
+  - `npm i`
 - `npm install 包名`
-    + 只下载
-    + `npm i 包名`
-- `npm install 包名 --save` 
-    + 下载并保存依赖项（package.json文件中的dependencies选项中）
-    + `npm i 包名 -S`
+  - 只下载
+  - `npm i 包名`
+- `npm install 包名 --save`
+  - 下载并保存依赖项（package.json文件中的dependencies选项中）
+  - `npm i 包名 -S`
 - `npm uninstall 包名`
-    + 只删除，如果有依赖项，依赖项会保存
-    + `npm un 包名`
+  - 只删除，如果有依赖项，依赖项会保存
+  - `npm un 包名`
 - `npm uninstall 包名 --save`
-    + 删除的同时也会把依赖信息删除
-    + `npm un 包名 -S`
+  - 删除的同时也会把依赖信息删除
+  - `npm un 包名 -S`
 - `npm help`
 - `npm 命令 --help`
 - `npm config list`     // 查看配置信息
@@ -155,6 +160,7 @@ exports 为 module.exports 的一个引用
 - 安装包时，添加`--save` 自动把依赖包添加到其中 `npm i 包名 --save`
 
 最有用的是那个`dependencies`选项，可以用来帮我们保存第三方包的依赖信息。
+
 1. 建议每个项目的根目录下都有一个 `package.json` 文件
 2. 建议执行 `npm install 包名 --save`添加`--save`这个选项，目的是保存依赖项的信息
 3. 有了这个`dependencies`选项后，删除`node_modules`后
@@ -169,4 +175,3 @@ exports 为 module.exports 的一个引用
 ## 6、Express
 
 ## 7、MongoDB
-

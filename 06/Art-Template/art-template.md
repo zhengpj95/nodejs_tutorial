@@ -4,6 +4,7 @@
 ## Sub template（子模版）
 
 `header.html`中的代码：
+
 ```html
 <div class="header" style="background-color: pink;">
   <h1>This is header.</h1>
@@ -12,10 +13,13 @@
 
 在要引用`header.html`的html页面中的相应位置写入如下代码，
 即可把`header.html`页面引入其中。
+
 ```javascript
 {{ include './header.html' }}
 ```
+
 例如：
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +46,7 @@
 ## Template inheritance（模板继承）
 
 母模板：
+
 ```javascript
   // layout.html
   {{ block 'content' }}
@@ -50,6 +55,7 @@
 ```
 
 子模版：
+
 ```javascript
   // 在子页面中继承母页面时的语句
   {{extend './layout.html'}}

@@ -14,10 +14,12 @@
 ### 启动和关闭数据库
 
 打开：
+
 ```shell
  # mongodb 默认使用执行 mongod 命令所处盘符根目录下的 /data/db 作为自己的数据存储目录
  # 所以第一次指定该命令之前先创建 /data/db
 ```
+
 如果想要修改默认的数据存储目录，可以：
 > mongod --dbpath=数据存储目录路径
 
@@ -36,18 +38,18 @@
 ### 基本命令
 
 - `show dbs`
-    + 查看显示所有数据库
+  - 查看显示所有数据库
 - `db`
-    + 查看当前操作额数据库
+  - 查看当前操作额数据库
 - `use 数据库名称`
-    + 切换到指定的数据库
-    + 如果没有则会创建，但不会马上查看得到，需要向其中插入数据后才能查看到
+  - 切换到指定的数据库
+  - 如果没有则会创建，但不会马上查看得到，需要向其中插入数据后才能查看到
 - 插入数据
-    + `db.表名.insertOne({"xxx":"xxx", ...})`
+  - `db.表名.insertOne({"xxx":"xxx", ...})`
 - 查看数据表
-    + `show collections`
+  - `show collections`
 - 查看数据
-    + `db.表名.find()`
+  - `db.表名.find()`
 
 ### MongoDB基本概念
 
@@ -56,8 +58,8 @@
 - 一个集合中可以有多个文档（表记录）
 - 文档结构很灵活，没有任何限制
 - MongoDB非常灵活，不需要像MySQL一样先创建数据库、表、设计表结构
-  + 在这里只需要：当你需要插入数据的时候，只需要指定往那个数据库的哪个集合操作就可以了
-  + 一切都有 MongoDB 来帮你自动完成建库建表这件事儿
+  - 在这里只需要：当你需要插入数据的时候，只需要指定往那个数据库的哪个集合操作就可以了
+  - 一切都有 MongoDB 来帮你自动完成建库建表这件事儿
 
 ### 在 Node 中操作 MongoDB 数据库
 
@@ -72,7 +74,6 @@
 可以提高开发效率，让操作 MongoDB 数据库更加方便
 
 ```javascript
-
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
@@ -86,31 +87,31 @@ mongoose.connect('mongodb://localhost/mytest')
 */
 
 var userSchema = new Schema({
-	username: {
-		type: String,
-		require: true  // not null
-	},
-	password: {
-		type: String,
-		require: true
-	},
-	email: {
-		type: String
-	}
+    username: {
+        type: String,
+        require: true  // not null
+    },
+    password: {
+        : String,
+        require: true
+    },
+    email: {
+        type: String
+    }
 })
 
 /*
 3.将文档结构发布为模型
-	mongoose.model 方法就是用来将一个架构发布为 model
-	第一个参数： 传入一个大写名词单数字符串用来表示你的数据库名称
-							mongoose 会自动将大写名称的字符串生成 小写复数 的集合名称
-							User 最终会变成 users 集合名称
-	第二个参数：	架构 Schema
-	返回值：模型构造函数
+    mongoose.model 方法就是用来将一个架构发布为 model
+    第一个参数： 传入一个大写名词单数字符串用来表示你的数据库名称
+                mongoose 会自动将大写名称的字符串生成 小写复数 的集合名称
+                User 最终会变成 users 集合名称
+    第二个参数：架构 Schema
+    返回值：模型构造函数
 */
 var User = mongoose.model('User', userSchema)
 
-// 4. 当我们有了模型构造函数之后，就可以使用这个构造函数对 
+// 4. 当我们有了模型构造函数之后，就可以使用这个构造函数对
 // users 集合中的数据为所欲为了
 ```
 
@@ -118,18 +119,18 @@ var User = mongoose.model('User', userSchema)
 
 ```javascript
 var admin = new User({
-	username: 'admin',
-	password: '123456',
-	email: 'admin@qq.com'
+    username: 'admin',
+    password: '123456',
+    email: 'admin@qq.com'
 })
 // 保存
 admin.save( (err, ret) => {
-	if (err) {
-		console.log("save error")
-	} else {
-		console.log("save success")
-		console.log(ret)
-	}
+    if (err) {
+        console.log("save error")
+    } else {
+        console.log("save success")
+        console.log(ret)
+    }
 })
 ```
 
@@ -137,11 +138,11 @@ admin.save( (err, ret) => {
 
 ```javascript
 User.find( (err, ret) => {
-	if (err) {
-		console.log("find error")
-	} else {
-		console.log(ret)
-	}
+    if (err) {
+        console.log("find error")
+    } else {
+        console.log(ret)
+    }
 })
 ```
 
@@ -149,11 +150,11 @@ User.find( (err, ret) => {
 
 ```javascript
 User.find({username: 'root'} ,(err, ret) => {
-	if (err) {
-		console.log("find error")
-	} else {
-		console.log(ret)
-	}
+    if (err) {
+        console.log("find error")
+    } else {
+        console.log(ret)
+    }
 })
 ```
 
@@ -162,14 +163,14 @@ User.find({username: 'root'} ,(err, ret) => {
 ```javascript
 // 查询一条，若不满足查询条件，则返回第一条
 User.findOne({
-	username: 'root',
-	password: '123456'
+    username: 'root',
+    password: '123456'
 } ,(err, ret) => {
-	if (err) {
-		console.log("find error")
-	} else {
-		console.log(ret)
-	}
+    if (err) {
+        console.log("find error")
+    } else {
+        console.log(ret)
+    }
 })
 ```
 
@@ -178,13 +179,13 @@ User.findOne({
 ```javascript
 // 删除第一个
 User.deleteOne({
-	username: 'zs'
+    username: 'zs'
 }, (err, ret) => {
-	if (err) {
-		console.log("find error")
-	} else {
-		console.log(ret)
-	}
+    if (err) {
+        console.log("find error")
+    } else {
+        console.log(ret)
+    }
 })
 ```
 
@@ -192,13 +193,13 @@ User.deleteOne({
 
 ```javascript
 User.deleteMany({
-	username: 'zs'
+    username: 'zs'
 }, (err, ret) => {
-	if (err) {
-		console.log("find error")
-	} else {
-		console.log(ret)
-	}
+    if (err) {
+        console.log("find error")
+    } else {
+        console.log(ret)
+    }
 })
 ```
 
@@ -209,13 +210,13 @@ User.deleteMany({
 // mongoose.set('useFindAndModify', false)
 
 User.findByIdAndUpdate('5c9355b178df350c685b70ac', {
-	password: '123123'
+    password: '123123'
 }, (err, ret) => {
-	if (err) {
-		console.log("update error")
-	} else {
-		console.log(ret)
-	}
+    if (err) {
+        console.log("update error")
+    } else {
+        console.log(ret)
+    }
 })
 ```
 
@@ -226,6 +227,7 @@ User.findByIdAndUpdate('5c9355b178df350c685b70ac', {
 > npm install mysql
 
 使用：
+
 ```javascript
 var mysql = require('mysql');
 // 创建连接
@@ -255,15 +257,15 @@ connection.end();
 promise 不是node的，是JavaScript的，为了处理回调地狱（callback hell）的问题，在 ECMAScript 6 中新增加的一个 API，转么处理回调地狱问题。
 
 ```javascript
-/* 	Promise 是一个构造函数
- 	Promise 容器一旦创建，就开始执行里面的代码
- 	创建 Promise 容器
-*/
+/* Promise 是一个构造函数
+ * Promise 容器一旦创建，就开始执行里面的代码
+ * 创建 Promise 容器
+ */
 /*
-	Promise 容器中存放了一个异步任务，开始为 Pending 状态，
-	可以转变为 Resolved 或 Rejected 状态，只能转变为其中之一。
-	Promise 本身不是异步的，但是内部往往都是封装一个异步任务
-*/
+ * Promise 容器中存放了一个异步任务，开始为 Pending 状态，
+ * 可以转变为 Resolved 或 Rejected 状态，只能转变为其中之一。
+ * Promise 本身不是异步的，但是内部往往都是封装一个异步任务
+ */
 var p1 = new Promise( （resolve, reject) => {
     fs.readFile('./data/a.txt', 'utf8', (err, data) => {
         if (err) {
@@ -286,15 +288,15 @@ p1.then(function (data) {
 
 ```
 
-![1553180641373](G:\self_study\nodejs_study\05\1553180641373.png)
+![1553180641373](E:\self_study\nodejs_tutorial\05\1553180641373.png)
 
-![1553180989155](G:\self_study\nodejs_study\05\1553180989155.png)
+![1553180989155](E:\self_study\nodejs_tutorial\05\1553180989155.png)
 
 解决 回调地狱 问题：
 
 ```javascript
 var p1 = new Promise((resolve, reject) => {
-		// a.text => hello AAA
+        // a.text => hello AAA
     fs.readFile('./data/a.txt', 'utf8', (err, data) => {
         if (err) {
             reject(err)
@@ -305,18 +307,18 @@ var p1 = new Promise((resolve, reject) => {
 })
 
 var p2 = new Promise( (resolve, reject) => {
-		// b.text => hello BBB
+    // b.text => hello BBB
     fs.readFile('./data/b.txt', 'utf8', (err, data) => {
         if (err) {
             reject(err)
         } else {
             resolve(data)
         }
-    }) 
+    })
 })
 
 var p3 = new Promise( (resolve, reject) => {
-		// c.text => hello CCC
+    // c.text => hello CCC
     fs.readFile('./data/c.txt', 'utf8', (err, data) => {
         if (err) {
             reject(err)
@@ -328,27 +330,27 @@ var p3 = new Promise( (resolve, reject) => {
 // 使用情况
 p1
   .then(function (data) {
-  	// 成功的处理
-  	console.log(data)		// hello AAA
-		return p2
-	}, function (err) {
-		// 错误的处理，错误这个函数可以不写
-	  console.log("read file error")
-	})
-	.then(function (data) {
-		console.log(data)		// hello BBB
-		return p3
-	})
-	.then(function (data) {
-		console.log(data)		// hello CCC
-	})
+    // 成功的处理
+    console.log(data)    // hello AAA
+    return p2
+    }, function (err) {
+    // 错误的处理，错误这个函数可以不写
+      console.log("read file error")
+    })
+    .then(function (data) {
+    console.log(data)    // hello BBB
+    return p3
+    })
+    .then(function (data) {
+    console.log(data)    // hello CCC
+    })
 // 最后输出结果一定是顺序出现
 // hello AAA
 // hello BBB
 // hello CCC
 ```
 
-![1553182749722](G:\self_study\nodejs_study\05\1553182749722.png)
+![1553182749722](E:\self_study\nodejs_tutorial\05\1553182749722.png)
 
 封装readFile方法：
 
@@ -370,14 +372,13 @@ pReadFile('./data/a.txt')
     .then(function (data) {
     console.log(data)
     return pReadFile('./data/b.txt')
-	})
+    })
     .then(function (data) {
     console.log(data)
     return pReadFile('./data/c.txt')
-	})
+    })
     .then(function (data) {
     console.log(data)
     // ...
-	})
+    })
 ```
-

@@ -27,25 +27,29 @@ app.listen(port, function(){
 ## 基本路由
 
 路由器
-  - 请求方法
-  - 请求路径
-  - 请求处理函数
+
+- 请求方法
+- 请求路径
+- 请求处理函数
 
 get:
+
 ```javascript
 // 当以 GET 方法请求 / 的时候，执行对应的处理函数
 app.get('/', (req, res) => {
   res.send('...')
 })
-......
+// ......
 ```
+
 post:
+
 ```javascript
 // 当以 POST 方法请求 / 的时候，执行对应的处理函数
 app.post('/', (req, res) => {
   res.send('...')
 })
-......
+// ......
 ```
 
 ## 静态资源服务
@@ -65,18 +69,21 @@ app.use(express.static('./public/'))
 ## 配置使用`art-template`模板引擎
 
 安装：
+
 ```shell
     npm install art-template --save
     npm install express-art-template --save
 ```
 
 配置：
+
 ```javascript
     // 以 .html 结尾的文件  
     app.engine('html', require('express-art-template'))
 ```
 
 使用：
+
 ```javascript
     app.get('/', function(req, res) {
       // 以 .html 结尾的文件
@@ -85,13 +92,15 @@ app.use(express.static('./public/'))
       })
     })
 ```
+
 如果希望修改默认的 `views` 视图渲染存储目录，可以：
+
 ```javascript
     // views 是固定默认的
     app.set('views', 目录路径)
 ```
 
-##  获取表单 POST 请求体数据
+## 获取表单 POST 请求体数据
 
 借助第三方包 `body-parser`
 
@@ -99,6 +108,7 @@ app.use(express.static('./public/'))
 > npm install --save body-parser
 
 配置：
+
 ```javascript
 var express = require('express')
 // 引包
@@ -133,7 +143,6 @@ Express 内置了一个API，可以直接通过 `req.query`来获取
 
 > req.query   // 获取GET提交的数据
 
-
 ## Express - 学生CRUD案例
 
 ### 起步
@@ -155,15 +164,17 @@ Express 内置了一个API，可以直接通过 `req.query`来获取
 ### 提取路由模块
 
 创建路由容器 ==> (router.js)
+
 ```javascript
 const express = require('express')
 const router = express.Router()
 ```
 
 把路由挂载到 router 中 ==> (router.js)
+
 ```javascript
 router.get('/', (req, res) => {
-	res.send('...')
+  res.send('...')
 })
 router.get('...', (req, res) => {
   // ...
@@ -174,11 +185,13 @@ router.post('...', (req, res) => {
 ```
 
 把 router 导出 ==> (router.js)
+
 ```javascript
 module.exports = router
 ```
 
 把路由容器挂载到 app 服务中 ==> (app.js)
+
 ```javascript
 const router = require('./router')
 app.use(router)
@@ -188,9 +201,9 @@ app.use(router)
 
 ```javascript
 /*
-	student.js
-	数据操作文件模块
-	职责：操作文件中的数据，只处理数据，不关心业务
+ * student.js
+ * 数据操作文件模块
+ * 职责：操作文件中的数据，只处理数据，不关心业务
 */
 
 // 获取所有学生列表
@@ -216,6 +229,7 @@ exports.deleteStudentById = function ([args, function]) {
 ```
 
 使用：
+
 ```javascript
 // 在要使用此模块的文件中导入
 const Student = require('./student')
@@ -245,6 +259,7 @@ Student.funcitionName([args, function])
 如果需要获取一个函数中异步操作的结果，则必须通过回调函数来获取
 
 异步操作的：（往往异步 API 都伴随一个回调函数）
+
 - setTimeout
 - readFile
 - writeFile
@@ -265,6 +280,3 @@ fn(function (data){
   console.log(data)
 })
 ```
-
-
-

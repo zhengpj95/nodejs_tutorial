@@ -49,6 +49,7 @@ node package manager
 
 把其他模块页面包含在主要页面中，以减少页面冗余
 > {{ include './header.html' }}
+>
 > {{ include './footer.html' }}
 
 ### 3.3 模板继承
@@ -246,19 +247,19 @@ nodemon, reload, automatically.
 第三方工具，会监视文件的变化，当文件发生变化时，自动重启服务器
 
 > npm install -g nodemon  // 安装到全局
-
+>
 > nodemon server.js     // 开启服务器，server.js是入口文件，文件名称不重要
 
 ### nvm
 
 > nvm ls // 管理Node.Js的版本号
-
+>
 > nvm ls availavle //查看所有可用的版本
 
 ### nrm
 
 > nrm ls // 查看下载源
-
-> nrm use <registry>  // 更换下载源
-  
-> nrm test <registry>  // 测试下载速度，不要<registry>则测试所有的
+>
+> nrm use registry  // 更换下载源
+>
+> nrm test registry  // 测试下载速度，不要registry则测试所有的
