@@ -1,0 +1,9 @@
+{
+	"data1": "this is data1",
+	"data2": [1, 2, 3, 4, 5],
+	"data3": {
+		"username": "ppt",
+		"age": 18
+	},
+	"data4": 100
+}
