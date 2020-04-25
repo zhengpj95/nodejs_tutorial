@@ -3,7 +3,8 @@ const connection = mongoose.connection;
 
 mongoose.connect('mongodb://localhost/tests', {
 	useNewUrlParser: true,
-	useUnifiedTopology: true
+	useUnifiedTopology: true,
+	useFindAndModify: false
 });
 
 connection.on('error', () => {
