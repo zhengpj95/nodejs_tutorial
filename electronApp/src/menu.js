@@ -8,7 +8,8 @@ const template = [
 				label: '打开', click: () => {
 					console.log(`open...`);
 					openFunc();
-				}
+				},
+				accelerator: 'ctrl+n'
 			},
 			{label: '保存'},
 			{label: '另保存'},
