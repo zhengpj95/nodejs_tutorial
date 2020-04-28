@@ -1,5 +1,5 @@
 (function () {
-	const {remote} = require('electron');
+	const {remote, shell} = require('electron');
 
 	//内嵌的browserView
 	const mainWin = remote.getCurrentWindow();
@@ -9,8 +9,8 @@
 
 	let ele = document.querySelector('#zhihu');
 	let url = ele.getAttribute('href');
-	browserView.webContents.loadURL(url)
-		.catch(err => console.log(err));
+	// browserView.webContents.loadURL(url)
+	// 	.catch(err => console.log(err));
 
 	//打开子窗口
 	let btn = document.getElementById('btnOpen');
@@ -19,10 +19,20 @@
 		window.open(url);
 	}
 
-	/**
-	 * window.open   vs   BrowserWindow
+	/*
+	 * window.open   vs   BrowserWindow   vs shell
 	 *
 	 * window.open 默认就是子窗口
 	 * BrowserWindow 就是一个窗口
+	 * shell 可以打开外部浏览器
 	 */
+
+
+	//在外部浏览器中打开页面
+	let btnInBrowser = document.getElementById('btnInBrowser');
+	btnInBrowser.onclick = function (e) {
+		e.preventDefault();
+		shell.openExternal(url)
+			.catch(err => console.log('Error: ', err));
+	}
 })();
