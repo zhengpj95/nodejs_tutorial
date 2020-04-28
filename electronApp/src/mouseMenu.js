@@ -9,6 +9,18 @@ let rightTemplate = [
 	},
 	{
 		label: '粘贴'
+	},
+	{
+		label: '打开 DevTools',
+		click: () => {
+			remote.getCurrentWindow().webContents.openDevTools({mode: 'right'});
+		}
+	},
+	{
+		label: '关闭 DevTools',
+		click: () => {
+			remote.getCurrentWindow().webContents.closeDevTools();
+		}
 	}
 ];
 let menu = remote.Menu.buildFromTemplate(rightTemplate);
