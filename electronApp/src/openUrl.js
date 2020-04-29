@@ -2,10 +2,10 @@
 	const {remote, shell} = require('electron');
 
 	//内嵌的browserView
-	const mainWin = remote.getCurrentWindow();
-	let browserView = new remote.BrowserView();
-	mainWin.setBrowserView(browserView);
-	browserView.setBounds({x: 0, y: 200, height: 500, width: 1500});
+	// const mainWin = remote.getCurrentWindow();
+	// let browserView = new remote.BrowserView();
+	// mainWin.setBrowserView(browserView);
+	// browserView.setBounds({x: 0, y: 200, height: 500, width: 1500});
 
 	let ele = document.querySelector('#zhihu');
 	let url = ele.getAttribute('href');
@@ -35,4 +35,15 @@
 		shell.openExternal(url)
 			.catch(err => console.log('Error: ', err));
 	}
+
+	// 打开子窗口，并接受子窗口传递过来的信息
+	let btn2 = document.getElementById('btnOpen2');
+	btn2.onclick = function (e) {
+		e.preventDefault();
+		window.open('./views/subIndex.html');
+	}
+	window.addEventListener('message', function (msg) {
+		let inputTxt = document.getElementById('txtFromChild');
+		inputTxt.innerText += '\n' + JSON.stringify(msg.data);
+	})
 })();
