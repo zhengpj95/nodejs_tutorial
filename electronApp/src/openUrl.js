@@ -1,5 +1,7 @@
 (function () {
 	const {remote, shell} = require('electron');
+	const path = require('path');
+	const fs = require('fs');
 
 	//内嵌的browserView
 	// const mainWin = remote.getCurrentWindow();
@@ -46,4 +48,39 @@
 		let inputTxt = document.getElementById('txtFromChild');
 		inputTxt.innerText += '\n' + JSON.stringify(msg.data);
 	})
+
+	let btnOpenFile = document.getElementById('btnOpenFile');
+	btnOpenFile.onclick = function () {
+		remote.dialog.showOpenDialog({
+			title: '测试打开文件',
+			// defaultPath: 'mongodbLinux.png',//打开窗口的默认文件
+			// filters相当于文件选择框右下角的选择
+			filters: [
+				{name: 'png', extensions: ['png', 'ico']},
+				{name: 'js', extensions: ['js']}
+			],
+			buttonLabel: '请选择文件。。。', //选择按钮的文本
+		}).then(result => {
+			let filePath = result.filePaths[0];
+			let parsedPath = path.parse(filePath);
+			if (parsedPath.ext == '.png' || parsedPath.ext == '.ico') {
+				let image = document.createElement('img');
+				image.src = filePath;
+				btnOpenFile.parentNode.appendChild(image);
+			} else if (parsedPath.ext == '.js') {
+				let code = document.createElement('code');
+				fs.readFile(filePath, 'utf-8', (err, data) => {
+					if (err) {
+						code.innerText = `读取${filePath}失败！`;
+						btnOpenFile.parentNode.appendChild(code);
+						return;
+					}
+					code.innerText = data;
+					btnOpenFile.parentNode.appendChild(code);
+				})
+			}
+		}).catch(err => {
+			console.log(`打开文件错误：${err}`);
+		})
+	}
 })();
