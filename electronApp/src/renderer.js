@@ -49,6 +49,7 @@
 		inputTxt.innerText += '\n' + JSON.stringify(msg.data);
 	})
 
+	// 打开文件对话框
 	let btnOpenFile = document.getElementById('btnOpenFile');
 	btnOpenFile.onclick = function () {
 		remote.dialog.showOpenDialog({
