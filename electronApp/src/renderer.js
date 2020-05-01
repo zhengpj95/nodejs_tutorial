@@ -97,4 +97,24 @@
 			console.log(`保存文件失败：${err}`)
 		})
 	}
+
+	// 弹出对话框
+	let btnMsgBox = document.getElementById('btnMsgBox');
+	let txtMsg = document.getElementById('txtMsg');
+	btnMsgBox.onclick = function () {
+		remote.dialog.showMessageBox({
+			type: 'error', //none, info, error, question or warning
+			title: '你到底要怎样？',
+			message: '你学不学呀，学习不快乐吗？',
+			buttons: ['happy', 'not happy']
+		}).then(result => {
+			if (result.response == 0) {
+				txtMsg.value = `你很喜欢学习哦`;
+			} else if (result.response == 1) {
+				txtMsg.value = `你不喜欢学习？这可不行。`;
+			}
+		}).catch(err => {
+			console.log(`弹出对话框失败：${err}`)
+		})
+	}
 })();
