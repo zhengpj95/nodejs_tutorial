@@ -117,4 +117,11 @@
 			console.log(`弹出对话框失败：${err}`)
 		})
 	}
+
+	window.addEventListener('online', () => {
+		alert(`你好，你连接上网络啦。`);
+	});
+	window.onoffline = function () {
+		alert(`网络断开，请重新连接。`)
+	}
 })();
