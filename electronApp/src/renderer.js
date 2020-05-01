@@ -84,4 +84,17 @@
 			console.log(`打开文件错误：${err}`);
 		})
 	}
+
+	// 保存文件
+	let btnSaveFile = document.getElementById('btnSaveFile');
+	btnSaveFile.onclick = function () {
+		remote.dialog.showSaveDialog({
+			title: '测试保存文件'
+		}).then(result => {
+			let parsedPath = path.parse(result.filePath);
+			fs.writeFileSync(parsedPath.base, 'Learn Electron is well.');
+		}).catch(err => {
+			console.log(`保存文件失败：${err}`)
+		})
+	}
 })();
