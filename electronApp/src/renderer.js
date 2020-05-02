@@ -118,10 +118,21 @@
 		})
 	}
 
+	// 联网，断网通知
 	window.addEventListener('online', () => {
 		alert(`你好，你连接上网络啦。`);
 	});
 	window.onoffline = function () {
 		alert(`网络断开，请重新连接。`)
+	}
+
+	// window底部信息通知
+	let option = {
+		title: '嗨，来信息了，快来看看吧',
+		body: '大美女发信息给你了，大公司发来offer了。'
+	}
+	let btnNotify = document.getElementById('btnNotify');
+	btnNotify.onclick = function () {
+		new window.Notification(option.title, option);
 	}
 })();
