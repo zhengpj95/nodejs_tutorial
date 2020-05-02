@@ -135,4 +135,11 @@
 	btnNotify.onclick = function () {
 		new window.Notification(option.title, option);
 	}
+
+	//剪贴板
+	let btnCopy = document.getElementById('btnCopy');
+	let code = document.getElementById('code');
+	btnCopy.onclick = function () {
+		remote.clipboard.writeText(code.innerText);
+	}
 })();
