@@ -142,4 +142,10 @@
 	btnCopy.onclick = function () {
 		remote.clipboard.writeText(code.innerText);
 	}
+
+	//重新加载，注册f5
+	let btnReload = document.getElementById('btnReload');
+	btnReload.onclick = function () {
+		console.log(btnReload);
+	}
 })();

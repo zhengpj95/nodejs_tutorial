@@ -40,7 +40,9 @@ app.on('ready', () => {
 		win.loadURL('https://zhihu.com/')
 			.catch(error => console.log(`Error: `, error));
 	})
-
+	globalShortcut.register('f5', () => {
+		win.reload();
+	})
 	let isRegister = globalShortcut.isRegistered('ctrl+o') ? 'shortcut register success' : 'shortcut register fail';
 	console.log(isRegister);
 })
