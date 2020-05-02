@@ -1,19 +1,30 @@
-const {app, BrowserWindow, globalShortcut} = require('electron');
+const {app, BrowserWindow, globalShortcut, screen} = require('electron');
 
 let win = null;
 
 function createWindow() {
+	//获取屏幕的区域大小
+	let area = screen.getPrimaryDisplay().workArea;
+
 	// Create the browser window.
 	win = new BrowserWindow({
-		height: 700,
-		width: 1500,
+		height: area.height,
+		width: area.width,
+		x: area.x,
+		y: area.y,
 		webPreferences: {
 			nodeIntegration: true,
 		},
 		icon: 'favicon.ico',
-		backgroundColor: '#d5d3d3',
-		center: true
+		backgroundColor: 'rgba(200,200,200,0.5)',
+		center: true,
+		// frame: false,
+		// opacity: 0.9
 	});
+
+	// 忽略所有鼠标时间，鼠标右键也会被忽略，electron加载的页面的左键点击事件也会被忽略
+	// win.setIgnoreMouseEvents(true);
+
 	// load menu
 	require('./src/menu');
 	// and load the index.html of the app.
