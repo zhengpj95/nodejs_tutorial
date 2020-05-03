@@ -9,8 +9,8 @@ function createWindow() {
 	let area = electron.screen.getPrimaryDisplay().workArea;
 
 	mainWin = new BrowserWindow({
-		width: area.width,
-		height: area.height,
+		width: 1500,
+		height: area.height / 4 * 3,
 		x: area.x,
 		y: area.y,
 		webPreferences: {
@@ -19,6 +19,8 @@ function createWindow() {
 	});
 
 	mainWin.loadFile('index.html').catch(err => console.log(err));
+
+	mainWin.webContents.openDevTools();
 }
 
 app.allowRendererProcessReuse = true;
@@ -31,7 +33,7 @@ app.on('activate', () => {
 	}
 })
 
-app.on('ready', ()=>{
+app.on('ready', () => {
 	globalShortcut.register('f5', () => {
 		mainWin.reload();
 	})

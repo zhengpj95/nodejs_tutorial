@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>连接工具</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!--    <script src="./node_modules/jquery/dist/jquery.js"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <style>
         html, body {
             height: 100%;
@@ -47,13 +49,13 @@
         <div class="leftDiv">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Redis</a>
+                    <a class="nav-link btnRedis" href="#">Redis</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mongodb</a>
+                    <a class="nav-link mongodb btnMongodb" href="#">Mongodb</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mongoose</a>
+                    <a class="nav-link disabled" href="#">Mongoose</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Other</a>
@@ -66,14 +68,14 @@
                 <div class="form-row align-items-center">
                     <label for="ipTxt" class="col-form-label">IP: </label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="ipTxt" placeholder="127.0.0.1">
+                        <input type="text" class="form-control" id="ipTxt" value="192.168.120.128">
                     </div>
                     <label for="portTxt" class="col-form-label">IP: </label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="portTxt" placeholder="80">
+                        <input type="text" class="form-control" id="portTxt" value="6379">
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-secondary">连接</button>
+                        <button type="button" class="btn btn-secondary btnConnect">连接</button>
                     </div>
                 </div>
             </form>
@@ -81,10 +83,10 @@
             操作命令: <br>
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="operationTxt" style="background-color: slategrey;">
+                    <input type="text" class="form-control" id="operationTxt" style="background-color: #98a5b3;">
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-secondary">Exec</button>
+                    <button type="button" class="btn btn-secondary btnExec">Exec</button>
                 </div>
             </div>
             <br><br>
@@ -97,5 +99,6 @@
         </div>
     </div>
 </div>
+<script src="./src/render.js"></script>
 </body>
 </html>
