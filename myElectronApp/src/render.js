@@ -1,6 +1,7 @@
 (function () {
 	const $ = require('jquery');
 	const redis = require('redis');
+	const mongodbClient = require('mongodb').MongoClient;
 	let redisClient = null;
 
 	//标识是redis，mongodb
@@ -14,6 +15,7 @@
 	let portEle = $('#portTxt');
 	let operationEle = $('#operationTxt');
 	let resultEle = $('#resultTxt');
+	let stateEle = $('#stateId');
 
 	let btnConnect = $('.btnConnect');
 	let btnRedis = $('.btnRedis');
@@ -29,6 +31,7 @@
 		currentType = ConnectType.Redis;
 		btnRedis.addClass('active');
 		clearText();
+		stateEle.html('Redis');
 	})
 
 	// 点击连接
@@ -97,11 +100,26 @@
 		btnMongodb.addClass('active');
 		clearText();
 		closeRedis();
+		stateEle.html('Mongodb');
 	})
 
 
 	function connectMongodb() {
-
+		let ip = ipEle.val();
+		let port = portEle.val();
+		if (!ip || !port || !mongodbClient) {
+			return;
+		}
+		const url = `mongodb://${ip}:${port}`;
+		mongodbClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
+			if (err) {
+				return;
+			}
+			resultEle.val('Connected successfully to server\n')
+			let db = client.db('test');
+			let docs = db.collection('students').find({});
+			console.log(docs)
+		})
 	}
 
 	//=========================================================
