@@ -17,10 +17,11 @@ function createWindow() {
 			nodeIntegration: true
 		}
 	});
+	require('./src/menu');
 
 	mainWin.loadFile('index.html').catch(err => console.log(err));
 
-	mainWin.webContents.openDevTools();
+	// mainWin.webContents.openDevTools();
 }
 
 app.allowRendererProcessReuse = true;
