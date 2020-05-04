@@ -68,11 +68,12 @@
 			}
 			let value = resultEle.val();
 			resultEle.val(value + 'redis ready...\n')
+			windowNotification(ConnectType.Redis, 1);
 		});
 		redisClient.on('error', (error) => {
-			console.log(`connect error...`, error);
 			redisClient.quit();
 			resultEle.val('connect error...' + error);
+			windowNotification(ConnectType.Redis, 0);
 		});
 	}
 
@@ -115,5 +116,15 @@
 			return;
 		}
 		resultEle.val(value + '\n');
+	}
+
+	function windowNotification(type, state) {
+		let typeMsg = type === ConnectType.Redis ? 'redis' : 'mongodb';
+		let stateMsg = state === 1 ? '成功' : '失败';
+		let option = {
+			title: '通知',
+			body: `${typeMsg} 连接${stateMsg}`
+		}
+		new window.Notification(option.title, option);
 	}
 })();
