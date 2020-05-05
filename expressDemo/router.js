@@ -14,6 +14,13 @@ router.get('/ab*/', (req, res) => {
 	res.send(req.url)
 })
 
+// 返回某页面和数据
+router.get('/test', (req, res) => {
+	res.render("test1.html", {
+		mydata: 'mydata...'
+	})
+})
+
 router.route('/users')
 	.all((req, res, next) => {
 		console.log(111);
