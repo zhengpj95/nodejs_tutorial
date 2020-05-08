@@ -66,6 +66,7 @@ function connectRedis() {
 	redisClient.on('ready', (err) => {
 		if (err) {
 			console.log(`ready.error --- `, err);
+			redisClient = null;
 			return;
 		}
 		let value = resultEle.val();
@@ -74,6 +75,7 @@ function connectRedis() {
 	});
 	redisClient.on('error', (error) => {
 		redisClient.quit();
+		redisClient = null;
 		resultEle.val('connect error...' + error);
 		windowNotification(ConnectType.Redis, 0);
 	});
@@ -119,6 +121,7 @@ function connectMongodb() {
 			return;
 		}
 		resultEle.val('Connected successfully to server\n')
+		windowNotification(ConnectType.Mongodb, 1);
 		let db = client.db(dbName);
 		let docs = db.collection('students').find({});
 		console.log(docs)
