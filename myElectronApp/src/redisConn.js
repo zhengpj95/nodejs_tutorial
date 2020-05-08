@@ -17,7 +17,13 @@ client.on('ready', (err) => {
 	}
 	console.log(`redis ready...`);
 })
-client.set('key1', 'value1', redis.print)
+
+// client.set('key3', 'value3', redis.print)
+// client.mset('key4', 'value4', 'key5', 'value5', redis.print)
+// client.setnx('key6', 'value66666', redis.print)
+
 client.get('key1', redis.print)
+client.mget('key1', 'key2', 'key5', 'key8', 'key6', redis.print)
+client.keys('*', redis.print)
 
 // client.quit(redis.print);
