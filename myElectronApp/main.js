@@ -15,7 +15,9 @@ function createWindow() {
 		y: area.y,
 		webPreferences: {
 			nodeIntegration: true
-		}
+		},
+		icon: './favicon.ico',
+		title: 'my tools', //如果index.html的title元素有文本，就会忽略此title
 	});
 	require('./src/menu');
 
