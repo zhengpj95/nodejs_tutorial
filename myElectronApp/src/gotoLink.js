@@ -21,8 +21,12 @@ linkList.forEach((item, index) => {
 	if (item) {
 		item.click(function (e) {
 			e.preventDefault();
-			shell.openExternal(urlList[index])
-				.catch(err => console.log(`Error: ${err}`));
+			// 外部浏览器打开链接
+			// shell.openExternal(urlList[index])
+			// 	.catch(err => console.log(`Error: ${err}`));
+
+			// 子窗口打开链接
+			window.open(urlList[index]);
 		});
 	}
 })
