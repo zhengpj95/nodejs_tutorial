@@ -8,3 +8,9 @@
 > electron-packager . appName --out path
 
 appName为命名，path为打包路劲
+
+我们也可以在 package.json 的 scripts 中配置如下代码
+
+> "packager": "electron-packager ./ myApp --out ./bin-release --icon=./favicon.ico"
+>
+> 然后通过 `npm run-script packager` 来进行打包
