@@ -1,4 +1,5 @@
 import { myPI, print, func } from './test.js';
+import { add, apply } from './addFunc.mjs';
 
 /**
  * package.json 中的 type 为 module 则可以直接使用
@@ -12,3 +13,6 @@ import { myPI, print, func } from './test.js';
 console.log(myPI);
 print()
 console.log(func());
+
+console.log(add(1, 2));
+apply();
